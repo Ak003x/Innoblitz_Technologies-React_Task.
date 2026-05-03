@@ -6,7 +6,7 @@ import { setActiveTab } from "@/redux/chartSlice";
 const tabs = [
   { label: "Requirements", color: "orange" },
   { label: "Design", color: "blue" },
-  { label: "Development", color: "navy" },
+  { label: "Development", color: "blue" },
   { label: "Testing", color: "blue" },
   { label: "Training", color: "orange" },
 ];

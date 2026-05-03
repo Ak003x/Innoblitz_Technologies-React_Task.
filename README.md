@@ -60,7 +60,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/react_task.git
+git clone https://github.com/Ak003x/Innoblitz_Technologies-React_Task.git
 
 # Navigate into the project
 cd react_task
@@ -100,12 +100,11 @@ src/
 │   ├── page.js                   # Dashboard page (pie charts)
 │   ├── development/
 │   │   └── page.jsx              # Detail view (data table)
-│   ├── api/
-│   │   └── records/route.js      # API route for records
 │   ├── layout.js
 │   └── globals.css
 │
 ├── components/
+│   ├── ClientLayout.jsx          # Client wrapper — sidebar + header shell
 │   ├── Sidebar.jsx               # Left navigation sidebar
 │   ├── Header.jsx                # Top header bar
 │   ├── TabNav.jsx                # Tab navigation

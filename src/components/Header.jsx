@@ -14,7 +14,7 @@ export default function Header({ onMenuToggle }) {
       {/* Icons */}
       <div className="flex items-center gap-2 md:gap-4 ml-auto">
         {/* Search */}
-        <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+        <button aria-label="Search" className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16.5 16.5l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -22,7 +22,7 @@ export default function Header({ onMenuToggle }) {
         </button>
 
         {/* Bell */}
-        <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+        <button aria-label="Notifications" className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M12 22c1.1 0 2-.9 2-2H10c0 1.1.9 2 2 2z" fill="currentColor"/>
             <path d="M18 16v-5a6 6 0 10-12 0v5l-2 2v1h16v-1l-2-2z" stroke="currentColor" strokeWidth="1.5"/>
@@ -30,7 +30,7 @@ export default function Header({ onMenuToggle }) {
         </button>
 
         {/* Mail */}
-        <button className="hidden sm:block p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+        <button aria-label="Messages" className="hidden sm:block p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M2 8l10 6 10-6" stroke="currentColor" strokeWidth="1.5"/>
