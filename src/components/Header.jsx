@@ -1,8 +1,18 @@
-export default function Header() {
+export default function Header({ onMenuToggle }) {
   return (
-    <header className="flex items-center justify-end h-16 px-6 bg-white border-b border-gray-100">
+    <header className="flex items-center justify-between h-16 px-4 md:px-6 bg-white border-b border-gray-100">
+      {/* Hamburger — mobile only */}
+      <button
+        className="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-500 transition"
+        onClick={onMenuToggle}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
+
       {/* Icons */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 ml-auto">
         {/* Search */}
         <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -20,7 +30,7 @@ export default function Header() {
         </button>
 
         {/* Mail */}
-        <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+        <button className="hidden sm:block p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M2 8l10 6 10-6" stroke="currentColor" strokeWidth="1.5"/>
@@ -34,7 +44,7 @@ export default function Header() {
               M
             </div>
           </div>
-          <span className="text-sm font-medium text-gray-700">Mike</span>
+          <span className="hidden sm:block text-sm font-medium text-gray-700">Mike</span>
         </div>
       </div>
     </header>

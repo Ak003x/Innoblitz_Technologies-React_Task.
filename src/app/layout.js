@@ -1,7 +1,6 @@
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
 import ReduxProvider from "@/providers/ReduxProvider";
+import ClientLayout from "@/components/ClientLayout";
 
 // Metadata
 export const metadata = {
@@ -14,21 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-gray-100 font-sans">
         <ReduxProvider>
-          {/* Sidebar */}
-          <Sidebar />
-
-          {/* Main content */}
-          <div className="ml-40 min-h-screen flex flex-col">
-            {/* Header */}
-            <Header />
-
-            {/* Page content */}
-            <main className="flex-1 p-6">
-              <div className="bg-white rounded-2xl p-6 min-h-full shadow-sm">
-                {children}
-              </div>
-            </main>
-          </div>
+          <ClientLayout>{children}</ClientLayout>
         </ReduxProvider>
       </body>
     </html>

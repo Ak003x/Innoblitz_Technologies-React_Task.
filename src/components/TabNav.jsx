@@ -16,7 +16,7 @@ export default function TabNav() {
   const activeTab = useSelector((state) => state.chart.activeTab);
 
   return (
-    <div className="flex gap-3 mb-6 flex-wrap">
+    <div className="flex gap-2 mb-6 overflow-x-auto pb-1 md:pb-0 md:gap-3 md:flex-wrap">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.label;
         return (
@@ -24,7 +24,7 @@ export default function TabNav() {
             key={tab.label}
             onClick={() => dispatch(setActiveTab(tab.label))}
             className={`
-              flex-1 min-w-30 px-4 py-4 rounded-xl text-sm font-medium
+              shrink-0 md:flex-1 min-w-30 px-4 py-3 md:py-4 rounded-xl text-sm font-medium
               flex items-center justify-between transition-all
               ${isActive
                 ? "bg-[#1a2057] text-white shadow-md"

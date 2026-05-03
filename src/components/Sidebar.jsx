@@ -18,11 +18,15 @@ const navItems = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-40 bg-[#1a2057] flex flex-col items-center py-6 z-50">
+    <aside
+      className={`fixed left-0 top-0 h-screen w-40 bg-[#1a2057] flex flex-col items-center py-6 z-50
+        transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+    >
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center">
         <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-2 overflow-hidden">
@@ -38,6 +42,7 @@ export default function Sidebar() {
             <Link
               key={item.path}
               href={item.path}
+              onClick={onClose}
               className={`flex flex-col items-center gap-1 py-3 px-2 rounded-xl transition-all ${
                 isActive
                   ? "bg-white/10 text-orange-400"
