@@ -10,6 +10,8 @@
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Recharts](https://img.shields.io/badge/Recharts-3.x-22B5BF?style=for-the-badge)
 
+### 🚀 [Live Demo](https://innoblitz-technologies-react-task.vercel.app/)
+
 </div>
 
 ---
