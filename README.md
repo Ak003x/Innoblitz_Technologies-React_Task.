@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pyxis AI Dashboard
+# Pyxis  Dashboard
 
 ### A modern dashboard to validate software design with source code and identify gaps in unit test checklists.
 
