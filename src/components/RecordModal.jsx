@@ -1,12 +1,9 @@
-// components/RecordModal.jsx
-// This is the popup form for ADDING a new record or EDITING an existing one.
-// It reads selectedRecord from Redux — if null, it's "Add" mode; otherwise "Edit" mode.
 "use client";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRecord, updateRecord, closeModal } from "@/redux/tableSlice";
 
-// The empty form state
+// Empty form defaults
 const emptyForm = {
   functionalRequirementId: "",
   pyxisAIClassification: "Positive",
@@ -19,47 +16,38 @@ export default function RecordModal() {
   const dispatch = useDispatch();
   const { isModalOpen, selectedRecord } = useSelector((s) => s.table);
 
-  // Local form state — this is what the user types into
+  // Form state
   const [form, setForm] = useState(emptyForm);
 
-  // When modal opens or selectedRecord changes, prefill the form
   useEffect(() => {
-    if (selectedRecord) {
-      setForm(selectedRecord);    // edit mode: prefill with existing data
-    } else {
-      setForm(emptyForm);         // add mode: blank form
-    }
+    setForm(selectedRecord ?? emptyForm);
   }, [selectedRecord, isModalOpen]);
 
-  // Don't render anything if modal is closed
   if (!isModalOpen) return null;
 
-  // Handle every input change — works for all fields
+  // Handlers
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
     if (selectedRecord) {
-      // Edit mode — dispatch updateRecord
       dispatch(updateRecord({ ...form, id: selectedRecord.id }));
     } else {
-      // Add mode — dispatch addRecord
       dispatch(addRecord(form));
     }
-    dispatch(closeModal()); // close the modal after save
+    dispatch(closeModal());
   };
 
   return (
-    // Backdrop — clicking outside closes modal
+    // Backdrop
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
       onClick={() => dispatch(closeModal())}
     >
-      {/* Modal box — stop click from closing when clicking inside */}
+      {/* Modal box */}
       <div
         className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-xl"
         onClick={(e) => e.stopPropagation()}
@@ -102,7 +90,7 @@ export default function RecordModal() {
             </select>
           </div>
 
-          {/* Developer Validation Document */}
+          {/* Developer validation doc */}
           <div>
             <label className="text-xs text-gray-500 font-medium block mb-1">
               Developer Validation Document
@@ -117,7 +105,7 @@ export default function RecordModal() {
             />
           </div>
 
-          {/* FDD Reference */}
+          {/* FDD reference */}
           <div>
             <label className="text-xs text-gray-500 font-medium block mb-1">
               FDD Reference
@@ -146,7 +134,7 @@ export default function RecordModal() {
             />
           </div>
 
-          {/* Buttons */}
+          {/* Actions */}
           <div className="flex gap-3 justify-end pt-2">
             <button
               type="button"

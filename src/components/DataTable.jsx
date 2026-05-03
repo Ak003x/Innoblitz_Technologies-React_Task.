@@ -1,5 +1,3 @@
-// components/DataTable.jsx
-// The main table with all CRUD operations: search, paginate, edit, delete, add.
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,34 +11,32 @@ import RecordModal from "./RecordModal";
 
 export default function DataTable() {
   const dispatch = useDispatch();
-
-  // Read everything we need from Redux state
   const { records, searchQuery, currentPage, itemsPerPage } = useSelector(
     (s) => s.table
   );
 
-  // 🔍 Filter records based on search query
+  // Filtered records
   const filtered = records.filter((r) =>
     r.functionalRequirementId.toLowerCase().includes(searchQuery.toLowerCase()) ||
     r.pyxisAIClassification.toLowerCase().includes(searchQuery.toLowerCase()) ||
     r.reason.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // 📄 Pagination — slice the array to show only current page's records
+  // Pagination
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const pageRecords = filtered.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div>
-      {/* Header row: title + search + add button */}
+      {/* Header row */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
         <h2 className="text-lg font-bold text-gray-800">
           Identify Gaps in Unit Test Checklist — Detail View
         </h2>
 
         <div className="flex items-center gap-3">
-          {/* Search box */}
+          {/* Search */}
           <div className="relative">
             <input
               type="text"
@@ -55,7 +51,7 @@ export default function DataTable() {
             </svg>
           </div>
 
-          {/* Export button */}
+          {/* Export */}
           <button className="flex items-center gap-1.5 px-3 py-2 border border-orange-300 text-orange-500 text-sm rounded-lg hover:bg-orange-50 transition">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M12 3v13M7 12l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -64,7 +60,7 @@ export default function DataTable() {
             Export
           </button>
 
-          {/* Add new record button */}
+          {/* Add record */}
           <button
             onClick={() => dispatch(openAddModal())}
             className="px-4 py-2 bg-[#1a2057] text-white text-sm rounded-lg hover:bg-[#2a3577] transition"
@@ -77,7 +73,7 @@ export default function DataTable() {
       {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-gray-100">
         <table className="w-full text-sm">
-          {/* Table head */}
+          {/* Head */}
           <thead>
             <tr className="bg-gray-50 border-b border-gray-100">
               <th className="text-left px-4 py-3 text-xs font-semibold text-gray-600">FR ID</th>
@@ -89,7 +85,7 @@ export default function DataTable() {
             </tr>
           </thead>
 
-          {/* Table body */}
+          {/* Body */}
           <tbody>
             {pageRecords.length === 0 ? (
               <tr>
@@ -105,18 +101,17 @@ export default function DataTable() {
                     idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"
                   }`}
                 >
-                  {/* FR ID */}
                   <td className="px-4 py-3 font-medium text-gray-800">
                     {record.functionalRequirementId}
                   </td>
 
-                  {/* Classification — colored badge */}
+                  {/* Classification badge */}
                   <td className="px-4 py-3">
                     <span
                       className={`font-semibold ${
                         record.pyxisAIClassification === "Positive"
-                          ? "text-green-600"   // green for positive
-                          : "text-red-500"     // red for negative
+                          ? "text-green-600"
+                          : "text-red-500"
                       }`}
                     >
                       {record.pyxisAIClassification}
@@ -135,18 +130,15 @@ export default function DataTable() {
                     {record.reason}
                   </td>
 
-                  {/* Action buttons: Edit + Delete */}
+                  {/* Row actions */}
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      {/* Edit button */}
                       <button
                         onClick={() => dispatch(openEditModal(record))}
                         className="px-2 py-1 text-xs bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition"
                       >
                         Edit
                       </button>
-
-                      {/* Delete button */}
                       <button
                         onClick={() => {
                           if (confirm("Are you sure you want to delete this record?")) {
@@ -173,7 +165,7 @@ export default function DataTable() {
         </span>
 
         <div className="flex items-center gap-1">
-          {/* Previous button */}
+          {/* Previous */}
           <button
             onClick={() => dispatch(setCurrentPage(Math.max(1, currentPage - 1)))}
             disabled={currentPage === 1}
@@ -209,7 +201,7 @@ export default function DataTable() {
             </button>
           )}
 
-          {/* Next button */}
+          {/* Next */}
           <button
             onClick={() => dispatch(setCurrentPage(Math.min(totalPages, currentPage + 1)))}
             disabled={currentPage === totalPages}
@@ -220,7 +212,7 @@ export default function DataTable() {
         </div>
       </div>
 
-      {/* Modal renders itself — it checks isModalOpen from Redux */}
+      {/* Modal */}
       <RecordModal />
     </div>
   );

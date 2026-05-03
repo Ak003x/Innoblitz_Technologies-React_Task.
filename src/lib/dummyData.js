@@ -1,3 +1,4 @@
+// Seed records
 export const dummyRecords = [
   {
     id: 1,
@@ -79,7 +80,7 @@ export const dummyRecords = [
     functionalDesignDocumentReference: "IT4_Appeals and Hearings_WP_FDD",
     reason: "FR8.163 appears in IT4_Appeals and Hearings_WP_FDD.",
   },
-  // --- We generate more records programmatically below ---
+  // Generated records
   ...Array.from({ length: 40 }, (_, i) => ({
     id: i + 11,
     functionalRequirementId: `FR${Math.floor(Math.random() * 20) + 1}.${i + 1}`,
@@ -97,7 +98,7 @@ export const dummyRecords = [
   })),
 ];
 
-// Chart data — used on the Dashboard page
+// Chart data
 export const chartData = {
   validateDesign: {
     title: "Validate Design with Source Code",

@@ -1,12 +1,10 @@
-// app/page.jsx
-// The main dashboard page — shows the summary title, tab nav, and two pie charts.
 "use client";
 import { useSelector } from "react-redux";
 import TabNav from "@/components/TabNav";
 import PieChartCard from "@/components/PieChartCard";
 
 export default function DashboardPage() {
-  // Read chart data from Redux
+  // Chart data
   const { validateDesign, identifyGaps } = useSelector((s) => s.chart);
 
   return (
@@ -16,19 +14,16 @@ export default function DashboardPage() {
         Validate Design with Code and Unit Test — Summary View
       </h1>
 
-      {/* Tab navigation */}
+      {/* Tabs */}
       <TabNav />
 
-      {/* Two pie charts side by side */}
+      {/* Charts */}
       <div className="flex gap-6 flex-wrap">
-        {/* Chart 1: Validate Design with Source Code */}
         <PieChartCard
           title={validateDesign.title}
           data={validateDesign.data}
           linkHref="/development"
         />
-
-        {/* Chart 2: Identify Gaps in Unit Test Checklist */}
         <PieChartCard
           title={identifyGaps.title}
           data={identifyGaps.data}

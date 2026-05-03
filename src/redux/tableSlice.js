@@ -1,71 +1,56 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { dummyRecords } from "@/lib/dummyData";
 
-
 const tableSlice = createSlice({
-  name: "table", 
+  name: "table",
 
+  // Initial state
   initialState: {
-    records: dummyRecords, 
-    searchQuery: "", 
-    currentPage: 1, 
-    itemsPerPage: 10, 
-    selectedRecord: null, 
-    isModalOpen: false, 
+    records: dummyRecords,
+    searchQuery: "",
+    currentPage: 1,
+    itemsPerPage: 10,
+    selectedRecord: null,
+    isModalOpen: false,
   },
 
+  // Reducers
   reducers: {
-   
+    // Add
     addRecord: (state, action) => {
-      
-      const newRecord = {
-        ...action.payload,
-        id: Date.now(), 
-      };
-      state.records.push(newRecord); 
+      state.records.push({ ...action.payload, id: Date.now() });
     },
-
-    // ✅ UPDATE — Edit an existing record
+    // Update
     updateRecord: (state, action) => {
-      // action.payload = { id, ...updated fields }
       const index = state.records.findIndex((r) => r.id === action.payload.id);
-      // findIndex returns -1 if not found, so we check
       if (index !== -1) {
-        state.records[index] = action.payload; // replace the old record
+        state.records[index] = action.payload;
       }
     },
-
-    // ✅ DELETE — Remove a record
+    // Delete
     deleteRecord: (state, action) => {
-      // action.payload = the id of the record to delete
       state.records = state.records.filter((r) => r.id !== action.payload);
     },
-
-    // 🔍 SEARCH — Filter records by search text
+    // Search
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
-      state.currentPage = 1; // reset to page 1 when searching
+      state.currentPage = 1;
     },
-
-    // 📄 PAGINATION — Change the current page
+    // Pagination
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
-
-    // 🗔 MODAL CONTROL — Open the modal for adding
+    // Modal — open add
     openAddModal: (state) => {
-      state.selectedRecord = null; // no record selected = add mode
+      state.selectedRecord = null;
       state.isModalOpen = true;
     },
-
-    // 🗔 MODAL CONTROL — Open the modal for editing
+    // Modal — open edit
     openEditModal: (state, action) => {
-      state.selectedRecord = action.payload; // store the record to edit
+      state.selectedRecord = action.payload;
       state.isModalOpen = true;
     },
-
-    // 🗔 MODAL CONTROL — Close the modal
+    // Modal — close
     closeModal: (state) => {
       state.isModalOpen = false;
       state.selectedRecord = null;
@@ -73,7 +58,7 @@ const tableSlice = createSlice({
   },
 });
 
-// Export actions so components can use them
+// Exports
 export const {
   addRecord,
   updateRecord,
@@ -85,5 +70,4 @@ export const {
   closeModal,
 } = tableSlice.actions;
 
-// Export the reducer to combine in the store
 export default tableSlice.reducer;

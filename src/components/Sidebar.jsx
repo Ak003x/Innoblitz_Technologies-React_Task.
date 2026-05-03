@@ -1,10 +1,8 @@
-// components/Sidebar.jsx
-// The dark navy sidebar on the left with the logo and navigation icons.
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Navigation items — each has a path and an SVG icon
+// Nav items
 const navItems = [
   {
     label: "Dashboard",
@@ -21,7 +19,7 @@ const navItems = [
 ];
 
 export default function Sidebar() {
-  const pathname = usePathname(); // tells us the current URL path
+  const pathname = usePathname();
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-40 bg-[#1a2057] flex flex-col items-center py-6 z-50">
@@ -42,13 +40,11 @@ export default function Sidebar() {
               href={item.path}
               className={`flex flex-col items-center gap-1 py-3 px-2 rounded-xl transition-all ${
                 isActive
-                  ? "bg-white/10 text-orange-400"   // active: highlighted
-                  : "text-white/60 hover:text-white hover:bg-white/5" // inactive
+                  ? "bg-white/10 text-orange-400"
+                  : "text-white/60 hover:text-white hover:bg-white/5"
               }`}
             >
-              {/* Icon */}
               <span className="text-current">{item.icon}</span>
-              {/* Label */}
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           );
