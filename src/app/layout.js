@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import ReduxProvider from "@/providers/ReduxProvider";
 
 export const metadata = {
-  title: "PyxisAI Dashboard",
+  title: "Pyxis Dashboard",
   description: "Validate Design with Code and Unit Test",
 };
 
